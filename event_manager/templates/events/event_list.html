@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Liste des événements{% endblock %}
+
+{% block content %}
+    <h2>Liste des événements</h2>
+    
+    {% if events %}
+        <ul class="event-list">
+            {% for event in events %}
+                <li class="event-item">
+                    <div class="event-title">
+                        <a href="{% url 'event_detail' event.id %}">{{ event.title }}</a>
+                    </div>
+                    <div class="event-date">
+                        Date: {{ event.date|date:"d/m/Y H:i" }}
+                    </div>
+                    <div class="event-participants">
+                        Participants: {{ event.get_participant_count }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun événement n'est prévu pour le moment.</p>
+    {% endif %}
+    
+    {% if user.is_authenticated %}
+        <p><a href="{% url 'create_event' %}">Créer un nouvel événement</a></p>
+    {% endif %}
+{% endblock %}
