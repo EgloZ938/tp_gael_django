@@ -1,0 +1,20 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Base de données SQLite
+db.sqlite3
+db.sqlite3-journal
+
+# Fichiers de log
+*.log
+
+# Environnements virtuels (si vous en utilisez un)
+venv/
+env/
+.env
+
+# Fichiers système
+.DS_Store
+Thumbs.db
