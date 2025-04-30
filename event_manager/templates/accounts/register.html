@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block content %}
+    <h2>Inscription</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        {% if form.errors %}
+            <div class="error-message">
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        {{ error }}<br>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <div class="form-group">
+            <label for="id_username">Nom d'utilisateur:</label>
+            {{ form.username }}
+            <small>Requis. 150 caractères maximum. Uniquement des lettres, chiffres et @/./+/-/_.</small>
+        </div>
+        
+        <div class="form-group">
+            <label for="id_password1">Mot de passe:</label>
+            {{ form.password1 }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_password2">Confirmation du mot de passe:</label>
+            {{ form.password2 }}
+        </div>
+        
+        <button type="submit">S'inscrire</button>
+    </form>
+    
+    <p>Déjà un compte? <a href="{% url 'login' %}">Se connecter</a></p>
+{% endblock %}
